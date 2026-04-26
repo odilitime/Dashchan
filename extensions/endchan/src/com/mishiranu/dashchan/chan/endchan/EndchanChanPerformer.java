@@ -450,7 +450,14 @@ public class EndchanChanPerformer extends ChanPerformer {
 					SendPostData.Attachment attachment = data.attachments[i];
 					byte[] bytes = new byte[(int) attachment.getSize()];
 					try (InputStream inputStream = attachment.openInputSteam()) {
-						inputStream.read(bytes);
+						int offset = 0;
+						while (offset < bytes.length) {
+							int count = inputStream.read(bytes, offset, bytes.length - offset);
+							if (count < 0) {
+								throw new IOException("Unexpected end of attachment stream");
+							}
+							offset += count;
+						}
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}
