@@ -39,7 +39,7 @@ public class EndchanModelMapper {
 		return attachment;
 	}
 
-	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.US);
+	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 
 	static {
 		DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -113,8 +113,10 @@ public class EndchanModelMapper {
 		String comment = CommonUtils.getJsonString(jsonObject, "markdown");
 		if (!StringUtils.isEmpty(comment)) {
 			comment = comment.replaceAll("(<a class=\"quoteLink\".*?>)&gt&gt", "$1&gt;&gt;"); // Fix html
-			comment = StringUtils.replaceAll(comment, PATTERN_BROKEN_LINK,
-					m -> m.group(1) + threadNumber + m.group(3));
+			if (threadNumber != null) {
+				comment = StringUtils.replaceAll(comment, PATTERN_BROKEN_LINK,
+						m -> m.group(1) + threadNumber + m.group(3));
+			}
 			comment = StringUtils.replaceAll(comment, PATTERN_COLORED_TEXT, matcher -> {
 				String color = matcher.group(1);
 				switch (color) {
