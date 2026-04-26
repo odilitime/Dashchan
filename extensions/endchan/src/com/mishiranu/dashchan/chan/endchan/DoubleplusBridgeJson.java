@@ -19,7 +19,7 @@ import org.json.JSONObject;
  */
 public final class DoubleplusBridgeJson {
 	private static final SimpleDateFormat CREATION_FORMAT =
-			new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'", Locale.US);
+			new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
 
 	static {
 		CREATION_FORMAT.setTimeZone(TimeZone.getTimeZone("UTC"));
