@@ -20,7 +20,6 @@ public class EndchanChanMarkup extends ChanMarkup {
 		addTag("span", "spoiler", TAG_SPOILER);
 		addTag("span", "redText", TAG_HEADING);
 		addTag("span", "aa", TAG_ASCII_ART);
-		addTag("pre", TAG_CODE);
 		addBlock("span", "aa", true, false);
 		addColorable("span", "colored", "true");
 	}
@@ -48,7 +47,7 @@ public class EndchanChanMarkup extends ChanMarkup {
 		return (SUPPORTED_TAGS & tag) == tag;
 	}
 
-	private static final Pattern THREAD_LINK = Pattern.compile("(\\d+).html(?:#(\\d+))?$");
+	private static final Pattern THREAD_LINK = Pattern.compile("(\\d+)\\.html(?:#(\\d+))?$");
 
 	@Override
 	public Pair<String, String> obtainPostLinkThreadPostNumbers(String uriString) {
