@@ -95,7 +95,7 @@ public class EndchanChanLocator extends ChanLocator {
 
 	@Override
 	public String getPostNumber(Uri uri) {
-		return uri.getFragment();
+		return uri != null ? uri.getFragment() : null;
 	}
 
 	@Override
